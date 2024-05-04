@@ -245,3 +245,207 @@ Processing by HomeController#index as HTML
 Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 0.0ms | Allocations: 1690)
 
 
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-05-04 02:57:37.615251', '2024-05-04 02:57:37.615254') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDatabases (20240504025415)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "databases" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "phone" varchar, "twitter" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240504025415') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2024-05-04 10:59:57 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 178)
+  Rendered home/_header.html.erb (Duration: 0.6ms | Allocations: 312)
+  Rendered layout layouts/application.html.erb (Duration: 325.6ms | Allocations: 36737)
+Completed 200 OK in 567ms (Views: 377.3ms | ActiveRecord: 0.0ms | Allocations: 41428)
+
+
+Started GET "/databases" for ::1 at 2024-05-04 11:00:02 +0800
+Processing by DatabasesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering databases/index.html.erb within layouts/application
+  [1m[36mDatabase Load (0.3ms)[0m  [1m[34mSELECT "databases".* FROM "databases"[0m
+  ↳ app/views/databases/index.html.erb:6
+  Rendered databases/index.html.erb within layouts/application (Duration: 10.2ms | Allocations: 1401)
+  Rendered home/_header.html.erb (Duration: 0.2ms | Allocations: 47)
+  Rendered layout layouts/application.html.erb (Duration: 21.3ms | Allocations: 2635)
+Completed 200 OK in 377ms (Views: 24.8ms | ActiveRecord: 6.3ms | Allocations: 12635)
+
+
+Started GET "/databases/new" for ::1 at 2024-05-04 11:00:04 +0800
+Processing by DatabasesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering databases/new.html.erb within layouts/application
+  Rendered databases/_form.html.erb (Duration: 40.2ms | Allocations: 3124)
+  Rendered databases/new.html.erb within layouts/application (Duration: 44.1ms | Allocations: 3401)
+  Rendered home/_header.html.erb (Duration: 0.1ms | Allocations: 46)
+  Rendered layout layouts/application.html.erb (Duration: 49.3ms | Allocations: 4604)
+Completed 200 OK in 144ms (Views: 51.3ms | ActiveRecord: 0.4ms | Allocations: 16994)
+
+
+Started POST "/databases" for ::1 at 2024-05-04 11:00:11 +0800
+Processing by DatabasesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "database"=>{"first_name"=>"", "last_name"=>"", "email"=>"", "phone"=>"", "twitter"=>""}, "commit"=>"Create Database"}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/databases_controller.rb:27:in `block in create'
+  [1m[36mDatabase Create (6.0ms)[0m  [1m[32mINSERT INTO "databases" ("first_name", "last_name", "email", "phone", "twitter", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["first_name", ""], ["last_name", ""], ["email", ""], ["phone", ""], ["twitter", ""], ["created_at", "2024-05-04 03:00:12.026272"], ["updated_at", "2024-05-04 03:00:12.026272"]]
+  ↳ app/controllers/databases_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/databases_controller.rb:27:in `block in create'
+Redirected to http://localhost:3000/databases/1
+Completed 302 Found in 21ms (ActiveRecord: 7.7ms | Allocations: 3469)
+
+
+Started GET "/databases/1" for ::1 at 2024-05-04 11:00:12 +0800
+Processing by DatabasesController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mDatabase Load (0.1ms)[0m  [1m[34mSELECT "databases".* FROM "databases" WHERE "databases"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/databases_controller.rb:63:in `set_database'
+  Rendering layout layouts/application.html.erb
+  Rendering databases/show.html.erb within layouts/application
+  Rendered databases/_database.html.erb (Duration: 0.6ms | Allocations: 249)
+  Rendered databases/show.html.erb within layouts/application (Duration: 13.5ms | Allocations: 1389)
+  Rendered home/_header.html.erb (Duration: 0.1ms | Allocations: 46)
+  Rendered layout layouts/application.html.erb (Duration: 18.3ms | Allocations: 2595)
+Completed 200 OK in 36ms (Views: 19.8ms | ActiveRecord: 0.1ms | Allocations: 5653)
+
+
+Started GET "/databases" for ::1 at 2024-05-04 11:00:18 +0800
+Processing by DatabasesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering databases/index.html.erb within layouts/application
+  [1m[36mDatabase Load (0.1ms)[0m  [1m[34mSELECT "databases".* FROM "databases"[0m
+  ↳ app/views/databases/index.html.erb:6
+  Rendered databases/_database.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered databases/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 794)
+  Rendered home/_header.html.erb (Duration: 0.1ms | Allocations: 46)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 1998)
+Completed 200 OK in 12ms (Views: 9.8ms | ActiveRecord: 0.1ms | Allocations: 2277)
+
+
+Started GET "/databases" for ::1 at 2024-05-04 11:04:54 +0800
+Processing by DatabasesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering databases/index.html.erb within layouts/application
+  [1m[36mDatabase Load (0.1ms)[0m  [1m[34mSELECT "databases".* FROM "databases"[0m
+  ↳ app/views/databases/index.html.erb:6
+  Rendered databases/_database.html.erb (Duration: 1.1ms | Allocations: 245)
+  Rendered databases/index.html.erb within layouts/application (Duration: 12.7ms | Allocations: 5168)
+  Rendered home/_header.html.erb (Duration: 0.9ms | Allocations: 239)
+  Rendered layout layouts/application.html.erb (Duration: 52.5ms | Allocations: 20688)
+Completed 200 OK in 65ms (Views: 57.0ms | ActiveRecord: 2.2ms | Allocations: 22332)
+
+
+Started GET "/databases" for ::1 at 2024-05-04 11:04:55 +0800
+Processing by DatabasesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering databases/index.html.erb within layouts/application
+  [1m[36mDatabase Load (0.2ms)[0m  [1m[34mSELECT "databases".* FROM "databases"[0m
+  ↳ app/views/databases/index.html.erb:6
+  Rendered databases/_database.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered databases/index.html.erb within layouts/application (Duration: 5.5ms | Allocations: 767)
+  Rendered home/_header.html.erb (Duration: 0.3ms | Allocations: 66)
+  Rendered layout layouts/application.html.erb (Duration: 16.6ms | Allocations: 2005)
+Completed 200 OK in 25ms (Views: 18.8ms | ActiveRecord: 0.1ms | Allocations: 2281)
+
+
+Started GET "/home/about" for ::1 at 2024-05-04 11:04:56 +0800
+Processing by HomeController#about as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/about.html.erb within layouts/application
+  Rendered home/about.html.erb within layouts/application (Duration: 0.7ms | Allocations: 90)
+  Rendered home/_header.html.erb (Duration: 0.2ms | Allocations: 86)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 1575)
+Completed 200 OK in 15ms (Views: 11.6ms | ActiveRecord: 0.0ms | Allocations: 2050)
+
+
+Started GET "/databases" for ::1 at 2024-05-04 11:04:57 +0800
+Processing by DatabasesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering databases/index.html.erb within layouts/application
+  [1m[36mDatabase Load (0.1ms)[0m  [1m[34mSELECT "databases".* FROM "databases"[0m
+  ↳ app/views/databases/index.html.erb:6
+  Rendered databases/_database.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered databases/index.html.erb within layouts/application (Duration: 4.2ms | Allocations: 775)
+  Rendered home/_header.html.erb (Duration: 0.2ms | Allocations: 66)
+  Rendered layout layouts/application.html.erb (Duration: 14.2ms | Allocations: 1998)
+Completed 200 OK in 18ms (Views: 15.7ms | ActiveRecord: 0.1ms | Allocations: 2273)
+
+
+Started GET "/databases" for ::1 at 2024-05-04 11:06:29 +0800
+Processing by DatabasesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering databases/index.html.erb within layouts/application
+  [1m[36mDatabase Load (0.2ms)[0m  [1m[34mSELECT "databases".* FROM "databases"[0m
+  ↳ app/views/databases/index.html.erb:6
+  Rendered databases/_database.html.erb (Duration: 0.9ms | Allocations: 245)
+  Rendered databases/index.html.erb within layouts/application (Duration: 10.0ms | Allocations: 5170)
+  Rendered home/_header.html.erb (Duration: 14.6ms | Allocations: 1692)
+  Rendered layout layouts/application.html.erb (Duration: 63.2ms | Allocations: 22195)
+Completed 500 Internal Server Error in 73ms (ActiveRecord: 2.7ms | Allocations: 23832)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_databases_path' for an instance of #<Class:0x000002cfd3b487a0>):
+    13:           <%= link_to 'Databases', databases_path, class:"nav-link"%>
+    14:         </li>
+    15:         <li class="nav-item">
+    16:           <%= link_to 'Add Database', new_databases_path, class:"nav-link"%>
+    17:         </li>
+    18:       </ul>
+    19:       <form class="d-flex" role="search">
+  
+app/views/home/_header.html.erb:16
+app/views/layouts/application.html.erb:15
+Started GET "/databases" for ::1 at 2024-05-04 11:06:43 +0800
+Processing by DatabasesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering databases/index.html.erb within layouts/application
+  [1m[36mDatabase Load (0.1ms)[0m  [1m[34mSELECT "databases".* FROM "databases"[0m
+  ↳ app/views/databases/index.html.erb:6
+  Rendered databases/_database.html.erb (Duration: 2.2ms | Allocations: 245)
+  Rendered databases/index.html.erb within layouts/application (Duration: 24.4ms | Allocations: 5172)
+  Rendered home/_header.html.erb (Duration: 2.4ms | Allocations: 1347)
+  Rendered layout layouts/application.html.erb (Duration: 73.4ms | Allocations: 21767)
+Completed 500 Internal Server Error in 84ms (ActiveRecord: 2.9ms | Allocations: 23387)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `databases_new_path' for an instance of #<Class:0x000002cfd1564430>):
+    13:           <%= link_to 'Databases', databases_path, class:"nav-link"%>
+    14:         </li>
+    15:         <li class="nav-item">
+    16:           <%= link_to 'Add Database', databases_new_path, class:"nav-link"%>
+    17:         </li>
+    18:       </ul>
+    19:       <form class="d-flex" role="search">
+  
+app/views/home/_header.html.erb:16
+app/views/layouts/application.html.erb:15
+Started GET "/" for ::1 at 2024-05-04 11:06:47 +0800
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 84)
+  Rendered home/_header.html.erb (Duration: 0.9ms | Allocations: 1159)
+  Rendered layout layouts/application.html.erb (Duration: 12.8ms | Allocations: 2649)
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 0.0ms | Allocations: 3100)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `databases_new_path' for an instance of #<Class:0x000002cfd1564430>):
+    13:           <%= link_to 'Databases', databases_path, class:"nav-link"%>
+    14:         </li>
+    15:         <li class="nav-item">
+    16:           <%= link_to 'Add Database', databases_new_path, class:"nav-link"%>
+    17:         </li>
+    18:       </ul>
+    19:       <form class="d-flex" role="search">
+  
+app/views/home/_header.html.erb:16
+app/views/layouts/application.html.erb:15
